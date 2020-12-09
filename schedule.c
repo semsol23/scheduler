@@ -1,9 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <errno.h>
 #include "schedule.h"
 
 #define MAX_TYPE		7
+
+extern int errno;
 
 //strings for printing the name of each enum element
 //enum type's name
@@ -84,15 +87,20 @@ void sched_print(void* obj)
 void* sched_genSchedInfo(char* name, char* place, int type, int month, int day)
 {
 	//error handler
-
-	//allocate memory and set the member variables
-	schedInfo_t* schedPtr = malloc(sizeof(struct schedInfo));
+	schedInfo_t* schedPtr;
+	if(errno == 0){
+		//allocate memory and set the member variables
+		schedPtr = malloc(sizeof(struct schedInfo));
+		
+		strcpy(schedPtr->name, name);
+		strcpy(schedPtr->place, place);
+		schedPtr->type = type;
+		schedPtr->month = month;
+		schedPtr->day = day;
+	}else{
+		perror("[ERROR]");
+	}
 	
-	strcpy(schedPtr->name, name);
-	strcpy(schedPtr->place, place);
-	schedPtr->type = type;
-	schedPtr->month = month;
-	schedPtr->day = day;
 	
 	return (void*)schedPtr;
 }
@@ -102,7 +110,8 @@ void* sched_genSchedInfo(char* name, char* place, int type, int month, int day)
 //get month information from the scheduler info structure
 float sched_getMonth(void* obj)
 {
-	
+	schedInfo_t* schedPtr = (schedInfo_t*)obj;
+	return (float)schedPtr->month;
 }
 
 
