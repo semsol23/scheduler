@@ -133,18 +133,24 @@ int main(int argc, char *argv[]) {
 				sched_printTypes();
 				printf("your choice : ");
 				scanf("%s", typeName);
-				
-				if (1==1/* fill code here -- convert the type and check if the type is valid */)
+				if ((type = sched_convertType(typeName)) >= 0)
 				{
 					ndPtr = list;
+					cnt = 1;
 					while (list_isEndNode(ndPtr) == 0)
 					{
 						//file code here -- print scheduling info elements matching to the place
 						ndPtr = list_getNextNd(ndPtr); //get the next node from the list
 						schedInfo = list_getNdObj(ndPtr); //get the object (scheduling info)
+						if(sched_getType(schedInfo) == type){
+							printf("------------------------------------------------------\n%d. ",cnt);
+							sched_print(schedInfo);
+							cnt++;
+						}
 						
 						//fill code this part - end
 					}
+					printf("------------------------------------------------------\n");
 				}
 				else
 				{
@@ -167,7 +173,6 @@ int main(int argc, char *argv[]) {
 	
 	return 0;
 }
-
 
 void printMenu(){
 		printf("\n\n");
