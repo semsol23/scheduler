@@ -110,14 +110,21 @@ int main(int argc, char *argv[]) {
 				scanf("%s", place);
 				
 				ndPtr = list;
+				cnt = 1;
 				while (list_isEndNode(ndPtr) == 0)
 				{
 					//file code here -- print scheduling info elements matching to the place
 					ndPtr = list_getNextNd(ndPtr); //get the next node from the list
 					schedInfo = list_getNdObj(ndPtr); //get the object (scheduling info)
+					if(!strcmp(sched_getPlace(schedInfo), place)){
+						printf("------------------------------------------------------\n%d. ",cnt);
+						sched_print(schedInfo);
+						cnt++;
+					}
 					
 					//fill code this part - end
 				}
+				printf("------------------------------------------------------\n");
 				
 				break;
 				

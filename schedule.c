@@ -118,7 +118,6 @@ float sched_getMonth(void* obj)
 //get type information from the scheduler info structure
 int sched_getType(void* obj)
 {
-	
 }
 
 
@@ -126,7 +125,8 @@ int sched_getType(void* obj)
 //get place string information from the scheduler info structure
 char* sched_getPlace(void* obj)
 {
-
+	schedInfo_t* schedPtr = (schedInfo_t*)obj;
+	return schedPtr->place;
 }
 
 //convert the name of the type into the enum(integer) value
