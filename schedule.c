@@ -87,17 +87,21 @@ void sched_print(void* obj)
 void* sched_genSchedInfo(char* name, char* place, int type, int month, int day)
 {
 	//error handler
+	// Through errno, handle the error
 	schedInfo_t* schedPtr;
 	if(errno == 0){
 		//allocate memory and set the member variables
+		// allocate memory of schedPtr
 		schedPtr = malloc(sizeof(struct schedInfo));
 		
+		// set the member variables
 		strcpy(schedPtr->name, name);
 		strcpy(schedPtr->place, place);
 		schedPtr->type = type;
 		schedPtr->month = month;
 		schedPtr->day = day;
 	}else{
+		// If an error occurs by errno, perror function print the error string.
 		perror("[ERROR]");
 	}
 	
