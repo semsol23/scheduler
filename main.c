@@ -88,16 +88,16 @@ int main(int argc, char *argv[]) {
 				scanf("%i", &month);
 				
 				ndPtr = list;
-				cnt = 1;
+				cnt = 1; // For numbering of schedule list.
 				while (list_isEndNode(ndPtr) == 0)
 				{
 					//file code here -- print scheduling info elements matching to the month
 					ndPtr = list_getNextNd(ndPtr); //get the next node from the list
 					schedInfo = list_getNdObj(ndPtr); //get the object (scheduling info)
-					if(sched_getMonth(schedInfo) == (float)month){
-						printf("------------------------------------------------------\n%d. ",cnt);
-						sched_print(schedInfo);
-						cnt++;
+					if(sched_getMonth(schedInfo) == (float)month){ // Check user input month with the correct schedule.
+						printf("------------------------------------------------------\n%d. ",cnt); // Print line of each schedule.
+						sched_print(schedInfo); // Print schedule
+						cnt++; // Count up for next schdule number.
 					}
 					//fill code this part - end
 				}
@@ -110,16 +110,16 @@ int main(int argc, char *argv[]) {
 				scanf("%s", place);
 				
 				ndPtr = list;
-				cnt = 1;
+				cnt = 1; // For numbering of schedule list.
 				while (list_isEndNode(ndPtr) == 0)
 				{
 					//file code here -- print scheduling info elements matching to the place
 					ndPtr = list_getNextNd(ndPtr); //get the next node from the list
 					schedInfo = list_getNdObj(ndPtr); //get the object (scheduling info)
-					if(!strcmp(sched_getPlace(schedInfo), place)){
-						printf("------------------------------------------------------\n%d. ",cnt);
-						sched_print(schedInfo);
-						cnt++;
+					if(!strcmp(sched_getPlace(schedInfo), place)){ // Check user input place with the correct schedule.
+						printf("------------------------------------------------------\n%d. ",cnt); // Print line of each schedule.
+						sched_print(schedInfo); // Print schedule
+						cnt++; // Count up for next schdule number.
 					}
 					
 					//fill code this part - end
@@ -133,19 +133,22 @@ int main(int argc, char *argv[]) {
 				sched_printTypes();
 				printf("your choice : ");
 				scanf("%s", typeName);
+				
+				// Convert user input(typeName) to type enum code.
+				// And check the typeName correct. If typeName incorrect the function return negative value.
 				if ((type = sched_convertType(typeName)) >= 0)
 				{
 					ndPtr = list;
-					cnt = 1;
+					cnt = 1; // For numbering of schedule list.
 					while (list_isEndNode(ndPtr) == 0)
 					{
 						//file code here -- print scheduling info elements matching to the place
 						ndPtr = list_getNextNd(ndPtr); //get the next node from the list
 						schedInfo = list_getNdObj(ndPtr); //get the object (scheduling info)
-						if(sched_getType(schedInfo) == type){
-							printf("------------------------------------------------------\n%d. ",cnt);
-							sched_print(schedInfo);
-							cnt++;
+						if(sched_getType(schedInfo) == type){// Check type with the correct schedule.
+							printf("------------------------------------------------------\n%d. ",cnt); // Print line of each schedule.
+							sched_print(schedInfo); // Print schedule
+							cnt++; // Count up for next schdule number.
 						}
 						
 						//fill code this part - end

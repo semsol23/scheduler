@@ -114,16 +114,16 @@ void* sched_genSchedInfo(char* name, char* place, int type, int month, int day)
 //get month information from the scheduler info structure
 float sched_getMonth(void* obj)
 {
-	schedInfo_t* schedPtr = (schedInfo_t*)obj;
-	return (float)schedPtr->month;
+	schedInfo_t* schedPtr = (schedInfo_t*)obj; // Casting obj to schedInto_t structure.
+	return (float)schedPtr->month; // return month of input obj
 }
 
 
 //get type information from the scheduler info structure
 int sched_getType(void* obj)
 {
-	schedInfo_t* schedPtr = (schedInfo_t*)obj;
-	return schedPtr->type;
+	schedInfo_t* schedPtr = (schedInfo_t*)obj; // Casting obj to schedInto_t structure.
+	return schedPtr->type; // return type of input obj
 }
 
 
@@ -131,13 +131,14 @@ int sched_getType(void* obj)
 //get place string information from the scheduler info structure
 char* sched_getPlace(void* obj)
 {
-	schedInfo_t* schedPtr = (schedInfo_t*)obj;
-	return schedPtr->place;
+	schedInfo_t* schedPtr = (schedInfo_t*)obj; // Casting obj to schedInto_t structure.
+	return schedPtr->place; // return type of input obj
 }
 
 //convert the name of the type into the enum(integer) value
 int sched_convertType(char* typeName)
 {
+	// Get match type code with user input typeName.
 	if(!strcmp("drama",typeName)){
 		return 0;
 	}else if(!strcmp("movie",typeName)){
@@ -153,6 +154,7 @@ int sched_convertType(char* typeName)
 	}else if(!strcmp("privacy",typeName)){
 		return 6;
 	}else{
+		// If user input typeName isn't included in predefined types, return negative value.
 		return -1;
 	}
 }
